@@ -1,6 +1,7 @@
 import requests
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CommandHandler, CallbackContext, CallbackQueryHandler
+#from telegram.ext import Application
 import os
 
 PORT = int(os.environ.get("PORT", "8443"))
@@ -140,16 +141,22 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("end", end))
     dispatcher.add_handler(CallbackQueryHandler(button))
 
-    #application.run_polling()
-
     updater.start_webhook(listen="0.0.0.0",
                         port=int(PORT),
                         url_path=TOKEN,
-                        webhook_url="https://weather-forecast-sg.herokuapp.com/")
+                        webhook_url="https://weather-forecast-sg.herokuapp.com/" + TOKEN)
     updater.idle()
 
 if __name__ == "__main__":
     main()
 
 
-#https://docs.python-telegram-bot.org/en/stable/examples.html
+#@app.route("/", methods=["GET", "POST"])
+#def home():
+#    if request.method == "POST":
+#        application = Application.builder().token("5906044284:AAFvXhElWvNLFBbnLgn8NfRc95dB0g5jzjU").build()
+#        application.add_handler(CommandHandler("start", start))
+#        application.add_handler(CommandHandler("set", set_command))
+#        application.add_handler(CommandHandler("end", end))
+#        application.add_handler(CallbackQueryHandler(button))
+#        application.run_polling()
