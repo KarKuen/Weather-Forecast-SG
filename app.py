@@ -145,7 +145,7 @@ def main() -> None:
     updater.start_webhook(listen="0.0.0.0",
                         port=int(PORT),
                         url_path=TOKEN,
-                        webhook_url="https://weather-forecast-sg.herokuapp.com/" + TOKEN)
+                        webhook_url="https://weather-forecast-sg.herokuapp.com/")
     updater.idle()
 
 if __name__ == "__main__":
